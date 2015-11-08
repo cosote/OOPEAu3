@@ -24,13 +24,13 @@ Care has been put into this UDF and it is in the authors interest to fix all bug
 
 ### Example 1: Creating a simple class
 
-If you're coming from a VB/C#/JScript etc. background, you may be quite familiar with this syntax. The first thing we have to do is disable AU3Check. *But minxomat, you said above that this is AU3Check enable?!* Yes, it is. After the extender did it's magic AU3Check is run on all code that is not a OOP Extender command, so no worries. So the script starts off with
+If you're coming from a VB/C#/JScript etc. background, you may be quite familiar with this syntax. The first thing we have to do is disable AU3Check. *But minxomat, you said above that this is AU3Check enabled?!* Yes, it is. After the extender did it's magic AU3Check is run on all code that is not a OOP Extender command, so no worries. So the script starts off with
 
 ```
 #AutoIt3Wrapper_Run_AU3Check=n
 ```
 
-Now we can call the extender. This is implicitely done by this include statement. Now, be aware that the placement of this statement is very important if you want to create an array of objects. Read all tutorials here to understand why that is. For this example, we don't have anything else to do before calling the extender, so let's just include it:
+Now we can call the extender. This is implicitly done by this include statement. Now, be aware that the placement of this statement is very important if you want to create an array of objects. Read all tutorials here to understand why that is. For this example, we don't have anything else to do before calling the extender, so let's just include it:
 
 ```au3
 #include 'OOP.au3'
@@ -224,7 +224,7 @@ Run that and press the direction keys. Both "players" move synchronously.
 
 ### Example 5: Arrays of Objects
 
-Now, creating objects in an array element couldn't be simple, just use it in the tag:
+Now, creating objects in an array element couldn't be simpler, just use it in the tag:
 
 ```au3
 # <classdef:SomeClass $aSomeArray[42]>
@@ -280,4 +280,4 @@ WEnd
 
 ### Creating compilable scripts
 
-You don't have to :-). The extender creates a compilable scrip everytime the current script is executed and no error occured. The generated script is placed in the same directory as `ScriptName_stable.au3`.
+You don't have to :-). The extender creates a compilable script everytime the current script is executed and no error occured. The generated script is placed in the same directory as `ScriptName_stable.au3`.
