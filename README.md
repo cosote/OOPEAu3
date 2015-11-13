@@ -21,3 +21,4 @@ Care has been put into this UDF and it is in the authors interest to fix all bug
 - Use `C`-style macros
 
 ## [&raquo; Visit the Wiki!](https://github.com/minxomat/AutoIt-OOP-Extender/wiki)
+*by minxomat (autoit.de), runtime by Mars (autoit.de)*
