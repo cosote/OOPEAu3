@@ -1,21 +1,17 @@
-; OOP UDF Example 5: Array of Objects
-
 #AutoIt3Wrapper_Run_AU3Check=n
 #include <Misc.au3>
+#include '../OOPE/OOPE.au3'
+
+; Define a simple loop macro:
+#define doevents($body) While GUIGetMsg() <> -3 \ For $n = 0 To UBound($aPlayers)-1 \ $body \ Next \ WEnd
 
 Local $aPlayers[10]
 
-#include 'OOP.au3'
-
 $hGUI = GUICreate("OOP Example")
-# <classdef:Player $aPlayers>
+#classdef <Player> $aPlayers
 GUISetState()
 
-While GUIGetMsg() <> -3
-	For $n = 0 To UBound($aPlayers)-1
-		$aPlayers[$n].Move(_IsPressed("27") - _IsPressed("25"), _IsPressed("28") - _IsPressed("26"))
-	Next
-WEnd
+doevents($aPlayers[$n].Move(_IsPressed("27") - _IsPressed("25"), _IsPressed("28") - _IsPressed("26")))
 
 #Region Class Player
 	Local $iX, $iY, $iHandle
