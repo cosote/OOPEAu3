@@ -49,12 +49,14 @@ Func _OOPE_ParseAndRun()
 	If $sSourceCode = "" Or @error Then _OOPE_Panic("Error reading script file!")
 	If _OOPE_WriteTest() Then _OOPE_Panic("Error writing in script directory. Permissions?")
 
+	; Replace \R with \r\n
+	$sSourceCode = StringRegExpReplace($sSourceCode, "\R+", @CRLF)
 	; Purge source file of nasty comments and strings that might contain confusing code.
 	Local $aStringsInCode = StringRegExp($sSourceCode, $__OOPE_AutoIt3UniqStringsPattern, 3)
 	For $sEach In $aStringsInCode
 		$sSourceCode = StringReplace($sSourceCode, $sEach, _Crypt_HashData($sEach, $CALG_MD5))
 	Next
-	$sSourceCode = StringRegExpReplace($sSourceCode, $__OOPE_AutoIt3UniqCommentsPattern, @CRLF)
+	$sSourceCode = StringRegExpReplace($sSourceCode, $__OOPE_AutoIt3UniqCommentsPattern, '')
 
 	; (1) Run the macro extender
 	If _OOPE_ContainsMacros($sSourceCode) Then $bParserFinishOK = _OOPE_ExtendMacros($sSourceCode)
@@ -66,6 +68,9 @@ Func _OOPE_ParseAndRun()
 	For $sEach In $aStringsInCode
 		$sSourceCode = StringReplace($sSourceCode, _Crypt_HashData($sEach, $CALG_MD5), $sEach)
 	Next
+
+	; Remove blank lines
+	$sSourceCode = StringRegExpReplace($sSourceCode, "(\s*\r\n){2,}", @CRLF)
 
 	_OOPE_WriteAndRun($sSourceCode, $sGeneratedScript)
 EndFunc
@@ -457,10 +462,3 @@ Func __StringToStructProtected($sString)
 	$vStruct.sString = $sString
 	Return $vStruct
 EndFunc
-
-
-
-
-
-
-
